@@ -16,7 +16,7 @@ const app = express();
 
 const allowedDomains =[
     "http://localhost:5173",
-    "https://day-trackr-six.vercel.app/"
+    "https://day-trackr-six.vercel.app"
 ]
 app.use(cors({
 origin:allowedDomains,
