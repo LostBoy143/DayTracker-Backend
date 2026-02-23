@@ -33,7 +33,6 @@ app.use(cors({
   credentials: true,
 }));
 
-app.options("*", cors());
 
 // Using middleware to parse json data
 app.use(express.json())
@@ -67,3 +66,4 @@ catch(error){
 }
 }
 startServer();
+
