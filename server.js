@@ -14,15 +14,26 @@ const app = express();
 
 // setting up cors
 
-const allowedDomains =[
-    "http://localhost:5173",
-    "https://day-trackr-six.vercel.app"
-]
+const allowedDomains = [
+  "http://localhost:5173",
+  "https://day-trackr-six.vercel.app"
+];
+
 app.use(cors({
-origin:allowedDomains,
-credentials:true
+  origin: function (origin, callback) {
+    // Allow non-browser clients (Postman, curl)
+    if (!origin) return callback(null, true);
+
+    if (allowedDomains.includes(origin)) {
+      return callback(null, true);
+    }
+
+    return callback(new Error("Not allowed by CORS"));
+  },
+  credentials: true,
 }));
 
+app.options("*", cors());
 
 // Using middleware to parse json data
 app.use(express.json())
